@@ -1,0 +1,24 @@
+services:
+   db: 
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-database-server
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+
+    ports:
+       - "1433:1433"
+    volumes:
+      - sql-data:/var/opt/mssql
+
+   chatbotiacore.api:
+    image: ${DOCKER_REGISTRY-}chatbotiacoreapi
+    build:
+      context: .
+      dockerfile: chatBotIaCore.API/Dockerfile
+    depends_on:
+      - db
+
+volumes:
+  sql-data:
+    driver: local
