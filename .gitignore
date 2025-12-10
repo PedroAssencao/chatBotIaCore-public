@@ -402,7 +402,8 @@ FodyWeavers.xsd
 
 #manualy add folders and files
 
-/chatBotIaCore/chatBotIaCore.API/Files
+/chatBotIaCore/chatBotIaCore.API/Files/*
+!/chatBotIaCore/chatBotIaCore.API/Files/.gitkeep
 
 # Sensitive configuration files
 appsettings.json
