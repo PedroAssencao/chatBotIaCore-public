@@ -18,6 +18,27 @@ namespace chatBotIaCore.Providers.DTO.IA
                 chatType = EChatType.Ongoing,
             };
         }
+        public static string SanitizeLlmResponse(string rawText)
+        {
+            if (string.IsNullOrEmpty(rawText))
+            {
+                return string.Empty;
+            }
+
+            string cleanedText = rawText.Replace("```json", "", StringComparison.OrdinalIgnoreCase)
+                                       .Replace("```", "", StringComparison.OrdinalIgnoreCase)
+                                       .Trim();
+
+            int firstBrace = cleanedText.IndexOf('{');
+            int lastBrace = cleanedText.LastIndexOf('}');
+
+            if (firstBrace >= 0 && lastBrace > firstBrace)
+            {
+                return cleanedText.Substring(firstBrace, lastBrace - firstBrace + 1);
+            }
+
+            return string.Empty;
+        }
         public static object assemblaImageRequestObject(string base64Image)
         {
 

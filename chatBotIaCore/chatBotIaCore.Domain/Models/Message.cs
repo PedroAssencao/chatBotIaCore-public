@@ -68,9 +68,9 @@ public partial class Message
     {
         if (MesProcessedContent != null && MesProcessedContent.Trim().Length > 0)
         {
-            return MesProcessedContent + $" Message send date: {(MesCreatedAt.HasValue ? MesCreatedAt.Value.ToString("dd/MM/yyyy HH:mm:ss") : "")}"; ;
+            return MesProcessedContent;
         }
 
-        return MesContent + $" Message send date: {(MesCreatedAt.HasValue ? MesCreatedAt.Value.ToString("dd/MM/yyyy HH:mm:ss") : "")}";
+        return MesContent;
     }
 }

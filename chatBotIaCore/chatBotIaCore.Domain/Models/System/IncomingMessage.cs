@@ -37,7 +37,7 @@ namespace chatBotIaCore.Domain.Models.System
         }
         public IncomingMessage MappeRequestClientToRequestServer(string contect)
         {
-            if (!(this.FileResponse is null))
+            if (!(this.File.filePath == ""))
             {
                 contect = this.FileResponse.fileName;
             }

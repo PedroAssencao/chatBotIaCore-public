@@ -42,7 +42,17 @@ namespace chatBotIaCore.Providers.Clients.IA
                 return LlmResponse.failure(ex.Message);
             }
 
-            return JsonConvert.DeserializeObject<LlmResponse>(request?.Value?.Content[0]?.Text.ToString() ?? "") ?? throw new Exception("There was a problem to convert the return to json");
+            string rawText = request?.Value?.Content[0]?.Text.ToString() ?? "";
+
+            try
+            {
+                return JsonConvert.DeserializeObject<LlmResponse>(LlmResponse.SanitizeLlmResponse(rawText))
+                    ?? throw new Exception("Problema na conversão do retorno para JSON.");
+            }
+            catch (Exception ex)
+            {
+                return LlmResponse.failure($"Falha na desserialização do JSON limpo: {ex.Message}");
+            }
         }
         public async Task<string> generateChatSummary(List<Message> historyChat, BotConfiguration settings, string? chatHistory = "")
         {
