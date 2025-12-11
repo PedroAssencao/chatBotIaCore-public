@@ -4,6 +4,12 @@ O **ChatBotIaCore** é uma solução de backend robusta para a criação e orque
 
 ---
 
+# 🎥 Demonstração
+
+https://github.com/user-attachments/assets/523322d5-e1d9-4425-aee7-4f6a3bd8623f
+
+---
+
 ## 🛠️ Instalação
 
 Siga os passos abaixo para configurar e rodar o projeto.
@@ -53,6 +59,34 @@ O projeto já está configurado com orquestração de contêineres para a API e 
     ```bash
     dotnet run
     ```
+
+    
+### 🌎 3. Configurando o Webhook do Meta (WhatsApp)
+
+1. Com a API **rodando**, inicie o **ngrok**:
+   ```bash
+   ngrok http 5058
+   ```
+2. Pegue a URL gerada (ex.: `https://f0a2ab243a9b.ngrok-free.app`).
+3. Vá até **Meta for Developers** → Webhooks → Configure:
+
+```
+{URL_DO_NGROK}/api/v1/Meta/hook
+```
+
+Exemplo:
+```
+https://f0a2ab243a9b.ngrok-free.app/api/v1/Meta/hook
+```
+
+4. Na configuração do Webhook:
+   - Ative **"messages"**
+   - Use versão **v19.0 ou superior**
+
+Se tudo estiver correto, o webhook será validado automaticamente e o bot ficará ativo com o fluxo padrão criado pelo SQL.
+
+---
+
 
 ---
 
