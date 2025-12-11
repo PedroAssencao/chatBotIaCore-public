@@ -65,7 +65,7 @@ O projeto já está configurado com orquestração de contêineres para a API e 
 
 1. Com a API **rodando**, inicie o **ngrok**:
    ```bash
-   ngrok http 5058
+   ex: ngrok http 5058
    ```
 2. Pegue a URL gerada (ex.: `https://f0a2ab243a9b.ngrok-free.app`).
 3. Vá até **Meta for Developers** → Webhooks → Configure:
